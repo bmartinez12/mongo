@@ -1,0 +1,101 @@
+// type queries and inserts in here and then copy to mongo client
+
+db.students.insert(
+{
+  name: "Elayna Martinez",
+  dorm:
+  { 
+    name: "Rivers",
+    roomNumber: 330
+  },
+  classes: [
+  {name: "Literature", days: ["tues", "thurs"], credits: 3},
+  {name: "Pooping", days: ["mon", "wed"], credits: 3}]
+}
+);
+
+./mongod
+mongo 
+
+db.students.find({
+  "classes.days" : "thurs"
+});
+
+db.students.find({
+  $and : [ //an array of expressions
+    {
+      name: "Alice"
+    },
+    {
+      age: { $lt : 21 }
+    }
+  ]
+});
+
+criteria will filter documents and projection limits properties
+
+db.students.find(
+  {}, 
+  { 
+    age : 0
+  });
+  
+   db.students.update(
+  {},                 
+  { $inc: {age:1} },   
+  { multi:true }       
+);
+
+   db.students.update(
+  {$eq : {age: 1}},                 
+  { $unset: {age: ""} },   
+  { multi:true }       
+);
+
+// This is a two step to updating an array. Its not really ideal 
+
+doc = alice doc;
+add(doc.grade, 100);
+
+   db.students.update(
+  {$eq : {name: "alice"}},                 
+  { $set: {grade: doc.grade} } 
+);
+
+// 
+
+ db.product.find({}, {name: 1, category: 1}).pretty();
+ 
+ db.students.find({
+  $and : [ //an array of expressions
+    {
+      name:
+    },
+    {
+      : {  }
+    }
+  ]
+});
+
+ db.product.find({}, {name: 1, category: 1});
+ 
+  db.product.find({}, {name: 1, category: 1, company: 1});
+  
+   db.product.update(
+   {company: "Stanley"},
+  { $set: {company: "Stanley Black and Decker"} }, 
+  { multi:true}
+);
+
+db.product.find({
+  price :
+    {$gt: 10.00}
+    });
+    
+   db.product.update(
+   {company: "Crest"},
+  { $unset: {company: ""} }, 
+  { multi:true}
+);
+    
+    
