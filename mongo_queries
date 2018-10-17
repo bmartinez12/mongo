@@ -1,0 +1,33 @@
+1.	You want price multiplied by quantity to get the value of the product. This is not possible with what we know or in find. 
+
+2.	No collections had to be joined, it was all in one document. The categories are repeated in each product.
+db.product.find({}).pretty();
+
+3. db.product.find({}, {name: 1, category: 1}).pretty();
+
+4.	It does produce redundancy. 
+db.product.find({}, {name: 1, category: 1, company: 1});
+  
+5.	Three documents had to be updated.
+   db.product.update(
+   {company: "Stanley"},
+  { $set: {company: "Stanley Black and Decker"} }, 
+  { multi:true}
+);
+
+6.	No problems!
+db.product.find({
+  price :
+    {$gt: 10.00}
+    });
+    
+db.product.find({
+  company : "Stanley Black and Decker"
+    });
+    
+7.    db.product.update(
+   {company: "Crest"},
+  { $unset: {company: ""} }, 
+  { multi:true}
+);
+    
